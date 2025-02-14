@@ -1,5 +1,8 @@
 import React from 'react';
 import WelcomeMessage from './components/WelcomeMessage.jsx';
+import Header from './Header.jsx';
+import MainContent from './MainContent.jsx';
+import Footer from './Footer.jsx';
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -13,6 +16,11 @@ function App() {
       <div className="App">
             <WelcomeMessage />
         </div>
+        <div>
+      <Header />
+      <MainContent />
+      <Footer />
+    </div>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
