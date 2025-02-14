@@ -13,10 +13,7 @@ function App() {
 
   return (
     <>
-      <div className="App">
-            <WelcomeMessage />
-        </div>
-        <div>
+            <div>
       <Header />
       <MainContent />
       <Footer />
