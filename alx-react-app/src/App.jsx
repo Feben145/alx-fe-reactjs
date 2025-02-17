@@ -1,9 +1,10 @@
 import React from 'react';
 import UserProfile from './components/UserProfile'; // Import the UserProfile component
+import WelcomeMessage from  './components/WelcomeMessage';
 import Header from  './components/Header';
 import MainContent from  './components/MainContent';
 import Footer from  './components/Footer';
-import WelcomeMessage from  './components/WelcomeMessage';
+
 
 const App = () => {
   return (
@@ -19,10 +20,11 @@ const App = () => {
         age="30"
         bio="Avid traveler and foodie"
       />
+       <WelcomeMessage />
       <Header />
       <MainContent />
       <Footer />
-      <WelcomeMessage />
+           
     </div>
 
   );
