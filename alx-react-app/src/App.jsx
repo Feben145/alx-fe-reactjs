@@ -9,6 +9,7 @@ import Footer from  './components/Footer';
 const App = () => {
   return (
     <div className="App">
+      <WelcomeMessage />
       <h1>User Profiles</h1>
       <UserProfile
         name="Alice"
@@ -20,7 +21,7 @@ const App = () => {
         age="30"
         bio="Avid traveler and foodie"
       />
-       <WelcomeMessage />
+     <WelcomeMessage />
       <Header />
       <MainContent />
       <Footer />
