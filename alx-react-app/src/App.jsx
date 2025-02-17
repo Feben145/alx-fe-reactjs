@@ -19,7 +19,11 @@ const App = () => {
         age="30"
         bio="Avid traveler and foodie"
       />
+      <Header />
+      <MainContent />
+      <Footer />
     </div>
+
   );
 };
 
