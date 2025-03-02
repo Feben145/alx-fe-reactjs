@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import { useRecipeStore } from './recipeStore';  // Correct path
+import React, { useState } from 'react';
+import { useRecipeStore } from './recipeStore';
+import { useNavigate } from 'react-router-dom'; // Use navigate for redirection
 
 const AddRecipeForm = () => {
-  const addRecipe = useRecipeStore((state) => state.addRecipe);
+  const addRecipe = useRecipeStore(state => state.addRecipe);
+  const navigate = useNavigate(); // To navigate programmatically
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -11,6 +13,7 @@ const AddRecipeForm = () => {
     addRecipe({ id: Date.now(), title, description });
     setTitle('');
     setDescription('');
+    navigate('/'); // Redirect back to the recipe list after adding
   };
 
   return (
