@@ -1,52 +1,56 @@
 import create from 'zustand';
 
 const useRecipeStore = create((set) => ({
-  // Store for all recipes
-  recipes: [],
+  recipes: [],  // Stores all recipes
+  searchTerm: '',  // Stores the current search term
+  filteredRecipes: [],  // Stores filtered recipes based on search
+  favorites: [],  // Stores favorite recipes
+  recommendations: [],  // Stores recommendations
 
-  // Store for user's favorites
-  favorites: [],
+  // Action to add a new recipe
+  addRecipe: (newRecipe) => set((state) => ({
+    recipes: [...state.recipes, newRecipe]
+  })),
 
-  // Store for recipe recommendations
-  recommendations: [],
+  // Action to update an existing recipe
+  updateRecipe: (updatedRecipe) => set((state) => ({
+    recipes: state.recipes.map((recipe) =>
+      recipe.id === updatedRecipe.id ? updatedRecipe : recipe
+    )
+  })),
 
-  // Actions
+  // Action to delete a recipe by its id
+  deleteRecipe: (recipeId) => set((state) => ({
+    recipes: state.recipes.filter((recipe) => recipe.id !== recipeId)
+  })),
 
-  // Add a new recipe
-  addRecipe: (newRecipe) => set((state) => ({ recipes: [...state.recipes, newRecipe] })),
+  // Action to set the search term
+  setSearchTerm: (term) => set({ searchTerm: term }),
 
-  // Set the list of recipes (e.g., for initialization or fetching from an API)
-  setRecipes: (recipes) => set({ recipes }),
+  // Action to filter recipes based on the search term
+  filterRecipes: () => set((state) => ({
+    filteredRecipes: state.recipes.filter((recipe) =>
+      recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
+    )
+  })),
 
-  // Add a recipe to favorites
+  // Action to add a recipe to favorites
   addFavorite: (recipeId) => set((state) => ({
-    favorites: [...state.favorites, recipeId],
+    favorites: [...state.favorites, recipeId]
   })),
 
-  // Remove a recipe from favorites
+  // Action to remove a recipe from favorites
   removeFavorite: (recipeId) => set((state) => ({
-    favorites: state.favorites.filter((id) => id !== recipeId),
+    favorites: state.favorites.filter(id => id !== recipeId)
   })),
 
-  // Generate recommendations based on favorite recipes (mock logic)
+  // Action to generate personalized recipe recommendations (mock implementation)
   generateRecommendations: () => set((state) => {
-    const recommended = state.recipes.filter((recipe) =>
+    const recommended = state.recipes.filter(recipe =>
       state.favorites.includes(recipe.id) && Math.random() > 0.5
     );
     return { recommendations: recommended };
   }),
-
-  // Search and filter recipes (added as an improvement for search)
-  searchTerm: '',
-  setSearchTerm: (term) => set({ searchTerm: term }),
-
-  filteredRecipes: [],
-  filterRecipes: () => set((state) => ({
-    filteredRecipes: state.recipes.filter((recipe) =>
-      recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
-      recipe.description.toLowerCase().includes(state.searchTerm.toLowerCase())
-    ),
-  })),
 }));
 
-export default useRecipeStore;
+export { useRecipeStore };
