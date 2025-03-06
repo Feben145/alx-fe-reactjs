@@ -1,27 +1,31 @@
 import React, { useState } from 'react';
 
 const RegistrationForm = () => {
-  // Define state with individual values for username, email, and password
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
+  // Use individual state variables for username, email, and password
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  // Handle changes in form fields
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  // Handle change for username
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  // Handle change for email
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  // Handle change for password
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
   };
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.username && formData.email && formData.password) {
-      console.log('Form submitted:', formData);
+    if (username && email && password) {
+      console.log('Form submitted:', { username, email, password });
     } else {
       alert('All fields are required');
     }
@@ -34,8 +38,8 @@ const RegistrationForm = () => {
           type="text"
           name="username"
           placeholder="Username"
-          value={formData.username} // Ensure "value" is set to formData.username
-          onChange={handleChange}
+          value={username} // Directly pass the username state here
+          onChange={handleUsernameChange}
         />
       </div>
       <div>
@@ -43,8 +47,8 @@ const RegistrationForm = () => {
           type="email"
           name="email"
           placeholder="Email"
-          value={formData.email} // Ensure "value" is set to formData.email
-          onChange={handleChange}
+          value={email} // Directly pass the email state here
+          onChange={handleEmailChange}
         />
       </div>
       <div>
@@ -52,8 +56,8 @@ const RegistrationForm = () => {
           type="password"
           name="password"
           placeholder="Password"
-          value={formData.password} // Ensure "value" is set to formData.password
-          onChange={handleChange}
+          value={password} // Directly pass the password state here
+          onChange={handlePasswordChange}
         />
       </div>
       <button type="submit">Register</button>
