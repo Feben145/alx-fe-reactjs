@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 
 const RegistrationForm = () => {
-  // Use individual state variables for username, email, and password
+  // State variables for username, email, password, and errors
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
 
   // Handle change for username
   const handleUsernameChange = (e) => {
@@ -21,13 +26,48 @@ const RegistrationForm = () => {
     setPassword(e.target.value);
   };
 
+  // Basic form validation
+  const validateForm = () => {
+    let valid = true;
+    let errorMessages = {
+      username: '',
+      email: '',
+      password: '',
+    };
+
+    // Validate username
+    if (!username) {
+      errorMessages.username = 'Username is required';
+      valid = false;
+    }
+
+    // Validate email
+    if (!email) {
+      errorMessages.email = 'Email is required';
+      valid = false;
+    }
+
+    // Validate password
+    if (!password) {
+      errorMessages.password = 'Password is required';
+      valid = false;
+    }
+
+    // Set errors if any
+    setErrors(errorMessages);
+
+    return valid;
+  };
+
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (username && email && password) {
+    
+    // Run validation before submission
+    if (validateForm()) {
       console.log('Form submitted:', { username, email, password });
     } else {
-      alert('All fields are required');
+      console.log('Form has errors:', errors);
     }
   };
 
@@ -38,27 +78,30 @@ const RegistrationForm = () => {
           type="text"
           name="username"
           placeholder="Username"
-          value={username} // Directly pass the username state here
+          value={username}
           onChange={handleUsernameChange}
         />
+        {errors.username && <p style={{ color: 'red' }}>{errors.username}</p>} {/* Display error message */}
       </div>
       <div>
         <input
           type="email"
           name="email"
           placeholder="Email"
-          value={email} // Directly pass the email state here
+          value={email}
           onChange={handleEmailChange}
         />
+        {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>} {/* Display error message */}
       </div>
       <div>
         <input
           type="password"
           name="password"
           placeholder="Password"
-          value={password} // Directly pass the password state here
+          value={password}
           onChange={handlePasswordChange}
         />
+        {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>} {/* Display error message */}
       </div>
       <button type="submit">Register</button>
     </form>
