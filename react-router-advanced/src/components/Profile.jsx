@@ -1,5 +1,8 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom'; // Import Outlet for nested routes
+import { Routes, Route, Link } from 'react-router-dom'; // Importing necessary components
+
+import ProfileDetails from './ProfileDetails'; // Import ProfileDetails component
+import ProfileSettings from './ProfileSettings'; // Import ProfileSettings component
 
 const Profile = () => {
   return (
@@ -7,17 +10,21 @@ const Profile = () => {
       <h2>Profile Page</h2>
       <ul>
         <li>
-          <Link to="details">Profile Details</Link> {/* Link to Profile Details */}
+          <Link to="details">Profile Details</Link> {/* Link to ProfileDetails */}
         </li>
         <li>
-          <Link to="settings">Profile Settings</Link> {/* Link to Profile Settings */}
+          <Link to="settings">Profile Settings</Link> {/* Link to ProfileSettings */}
         </li>
       </ul>
 
-      {/* This will render the nested routes like ProfileDetails or ProfileSettings */}
-      <Outlet />
+      {/* Define the nested routes directly inside Profile */}
+      <Routes>
+        <Route path="details" element={<ProfileDetails />} /> {/* Nested ProfileDetails route */}
+        <Route path="settings" element={<ProfileSettings />} /> {/* Nested ProfileSettings route */}
+      </Routes>
     </div>
   );
 };
 
 export default Profile;
+
