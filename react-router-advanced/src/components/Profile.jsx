@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom'; // Importing necessary components for routing
+import { Link, Outlet } from 'react-router-dom'; // Import Outlet for nested routes
 
 const Profile = () => {
   return (
@@ -14,7 +14,7 @@ const Profile = () => {
         </li>
       </ul>
 
-      {/* Outlet will render the nested routes (ProfileDetails or ProfileSettings) */}
+      {/* This will render the nested routes like ProfileDetails or ProfileSettings */}
       <Outlet />
     </div>
   );
