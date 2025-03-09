@@ -2,8 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 const BlogPost = () => {
-  // Access the dynamic 'id' parameter from the URL
-  const { id } = useParams();
+  const { id } = useParams();  // Access dynamic route 'id'
 
   return (
     <div>
