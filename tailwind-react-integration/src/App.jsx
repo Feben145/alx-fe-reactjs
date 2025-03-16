@@ -1,5 +1,6 @@
-import React from 'react';
-import UserProfile from './components/UserProfile'; // Adjust the import path as needed
+// src/App.js
+import React from "react";
+import UserProfile from "./components/UserProfile"; // Import UserProfile component
 
 function App() {
   return (
