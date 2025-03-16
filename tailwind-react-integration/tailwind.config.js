@@ -1,9 +1,9 @@
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",  // Ensure this covers all files where Tailwind classes might be used
-    "./public/index.html",         // Include the HTML file
+    './src/**/*.{js,jsx,ts,tsx}',   // Scan JavaScript and TypeScript files in the src folder
+    './public/index.html',          // Scan the HTML file for Tailwind classes
   ],
-  darkMode: 'media',  // Or 'class' if you want to toggle dark mode manually
+  darkMode: 'media',  // Optional: Use 'media' for automatic dark mode based on system preference
   theme: {
     extend: {},
   },
