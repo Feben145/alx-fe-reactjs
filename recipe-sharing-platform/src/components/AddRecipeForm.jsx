@@ -4,18 +4,24 @@ const AddRecipeForm = ({ onAddRecipe }) => {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({}); // Explicitly defined
+
+  // Validation function
+  const validate = () => {
+    let newErrors = {};
+
+    if (!title.trim()) newErrors.title = "Recipe title is required.";
+    if (!ingredients.trim()) newErrors.ingredients = "At least one ingredient is required.";
+    if (!steps.trim()) newErrors.steps = "Please provide preparation steps.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validate()) return; // Run validation before submission
 
-    // Validation: Ensure all fields are filled
-    if (!title.trim() || !ingredients.trim() || !steps.trim()) {
-      setError("All fields are required.");
-      return;
-    }
-
-    // Convert ingredients & steps to array format
     const newRecipe = {
       id: Date.now(),
       title,
@@ -28,14 +34,12 @@ const AddRecipeForm = ({ onAddRecipe }) => {
     setTitle("");
     setIngredients("");
     setSteps("");
-    setError("");
+    setErrors({}); // Reset errors after successful submission
   };
 
   return (
     <div className="max-w-2xl mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-bold text-center mb-4">Add a New Recipe</h2>
-
-      {error && <p className="text-red-500 text-center">{error}</p>}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -47,6 +51,7 @@ const AddRecipeForm = ({ onAddRecipe }) => {
             className="w-full border p-2 rounded-md focus:ring focus:ring-blue-300"
             placeholder="Enter recipe title"
           />
+          {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
         </div>
 
         <div>
@@ -57,6 +62,7 @@ const AddRecipeForm = ({ onAddRecipe }) => {
             className="w-full border p-2 rounded-md focus:ring focus:ring-blue-300"
             placeholder="e.g. Sugar, Flour, Eggs"
           ></textarea>
+          {errors.ingredients && <p className="text-red-500 text-sm">{errors.ingredients}</p>}
         </div>
 
         <div>
@@ -67,6 +73,7 @@ const AddRecipeForm = ({ onAddRecipe }) => {
             className="w-full border p-2 rounded-md focus:ring focus:ring-blue-300"
             placeholder="Step 1. Step 2. Step 3."
           ></textarea>
+          {errors.steps && <p className="text-red-500 text-sm">{errors.steps}</p>}
         </div>
 
         <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
