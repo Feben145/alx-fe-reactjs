@@ -6,7 +6,7 @@ const RecipeDetail = () => {
   const [recipe, setRecipe] = useState(null);
 
   useEffect(() => {
-    fetch("/data.json") // Ensure data.json is in `public/`
+    fetch("/data.json")
       .then((res) => res.json())
       .then((data) => {
         const selectedRecipe = data.recipes.find((r) => r.id === parseInt(id));
@@ -22,18 +22,21 @@ const RecipeDetail = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-4xl font-bold text-center">{recipe.title}</h1>
-      <img src={recipe.image} alt={recipe.title} className="w-full max-w-lg mx-auto my-6 rounded-lg shadow-lg" />
-      
+      <img
+        src={recipe.image}
+        alt={recipe.title}
+        className="w-full max-w-lg mx-auto my-6 rounded-lg shadow-lg"
+      />
       <div className="bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold">Ingredients</h2>
-        <ol className="list-disc ml-5 mt-2">
+        <ul className="list-disc ml-5 mt-2">
           {recipe.ingredients.map((ingredient, index) => (
             <li key={index}>{ingredient}</li>
           ))}
-        </ol>
+        </ul>
 
         <h2 className="text-2xl font-semibold mt-4">Instructions</h2>
-        <ol className="mt-2">{recipe.instructions}</ol>
+        <p className="mt-2">{recipe.instructions}</p>
       </div>
     </div>
   );
