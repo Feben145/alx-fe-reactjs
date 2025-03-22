@@ -41,7 +41,12 @@ const HomePage = () => {
               <button className="mt-3 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                 View Recipe
               </button>
-            </Link>
+              </Link>
+              <div className="flex justify-start mb-4">
+        <Link to="/add-recipe" className="mt-3 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">
+          Add New Recipe
+        </Link>
+      </div>
           </div>
         ))}
       </div>
