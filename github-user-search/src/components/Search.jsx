@@ -7,22 +7,26 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!query.trim()) return;
+   const fetchUserData = async (username) => {
+    if (!username.trim()) return;
 
     setLoading(true);
     setError(false);
     setUser(null);
 
     try {
-      const response = await axios.get(`https://api.github.com/users/${query}`);
+      const response = await axios.get(`https://api.github.com/users/${username}`);
       setUser(response.data);
     } catch (error) {
       setError(true);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchUserData(query); 
   };
 
   return (
@@ -39,12 +43,13 @@ export default function Search() {
           Search
         </button>
       </form>
-      {loading && <p className="text-gray-500 mt-4">Loading...</p>}
 
-     
+           {loading && <p className="text-gray-500 mt-4">Loading...</p>}
+
+      
       {error && <p className="text-red-500 mt-4">Looks like we cant find the user</p>}
-
-            {user && (
+    
+      {user && (
         <div className="mt-4 p-4 bg-gray-100 rounded-lg flex items-center gap-4">
           <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full" />
           <div>
