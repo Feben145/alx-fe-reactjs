@@ -1,9 +1,10 @@
 module.exports = {
+  purge: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   content: [
-    './src/**/*.{js,jsx,ts,tsx}',   // Scan JavaScript and TypeScript files in the src folder
-    './public/index.html',          // Scan the HTML file for Tailwind classes
+    "./src/**/*.{js,jsx,ts,tsx}", // Scan JavaScript and TypeScript files in the src folder
+    "./public/index.html", // Scan the HTML file for Tailwind classes
   ],
-  darkMode: 'media',  // Optional: Use 'media' for automatic dark mode based on system preference
+  darkMode: "media", // Optional: Use 'media' for automatic dark mode based on system preference
   theme: {
     extend: {},
   },
