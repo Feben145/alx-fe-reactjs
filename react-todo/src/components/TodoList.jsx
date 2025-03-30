@@ -1,26 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 
-const TodoList = () => {
-  // Initialize state with some demo todos
+export default function TodoList() {
   const [todos, setTodos] = useState([
-    { id: 1, text: 'Learn React', completed: false },
-    { id: 2, text: 'Learn Testing', completed: false },
-    { id: 3, text: 'Build a Project', completed: false },
+    { id: 1, text: "Learn React", completed: false },
+    { id: 2, text: "Build a Todo App", completed: false },
   ]);
-  const [newTodo, setNewTodo] = useState('');
+  const [newTodo, setNewTodo] = useState("");
 
-  // Add a new todo
-  const addTodo = (e) => {
-    e.preventDefault();
-    if (newTodo.trim() === '') return;
-    setTodos([
-      ...todos,
-      { id: Date.now(), text: newTodo, completed: false },
-    ]);
-    setNewTodo('');
+  const addTodo = () => {
+    if (newTodo.trim() === "") return;
+    setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
+    setNewTodo("");
   };
 
-  // Toggle todo completion
   const toggleTodo = (id) => {
     setTodos(
       todos.map((todo) =>
@@ -29,33 +21,44 @@ const TodoList = () => {
     );
   };
 
-  // Delete todo
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   return (
-    <div>
-      <h2>Todo List</h2>
-      <form onSubmit={addTodo}>
-        <input
-          type="text"
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-          placeholder="Add a new todo"
-        />
-        <button type="submit">Add Todo</button>
-      </form>
-      <ul>
+    <div className="p-4 max-w-md mx-auto bg-white shadow-lg rounded-lg">
+      <h2 className="text-xl font-bold mb-4">Todo List</h2>
+      <input
+        type="text"
+        className="border p-2 w-full"
+        value={newTodo}
+        onChange={(e) => setNewTodo(e.target.value)}
+        placeholder="Add a new todo..."
+      />
+      <button
+        className="mt-2 bg-blue-500 text-white px-4 py-2 rounded w-full"
+        onClick={addTodo}
+      >
+        Add Todo
+      </button>
+      <ul className="mt-4">
         {todos.map((todo) => (
-          <li key={todo.id} style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+          <li
+            key={todo.id}
+            className={`flex justify-between p-2 ${
+              todo.completed ? "line-through text-gray-500" : ""
+            }`}
+          >
             <span onClick={() => toggleTodo(todo.id)}>{todo.text}</span>
-            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+            <button
+              className="bg-red-500 text-white px-2 py-1 rounded"
+              onClick={() => deleteTodo(todo.id)}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
     </div>
   );
-};
-
-export default TodoList;
+}
