@@ -39,15 +39,12 @@ export default function Search() {
           Search
         </button>
       </form>
-
-      {/* Loading message */}
       {loading && <p className="text-gray-500 mt-4">Loading...</p>}
 
-      {/* Error message */}
-      {error && <p className="text-red-500 mt-4">Looks like we can't find the user.</p>}
+     
+      {error && <p className="text-red-500 mt-4">Looks like we cant find the user</p>}
 
-      {/* Display user profile if found */}
-      {user && (
+            {user && (
         <div className="mt-4 p-4 bg-gray-100 rounded-lg flex items-center gap-4">
           <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full" />
           <div>
