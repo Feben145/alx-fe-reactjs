@@ -57,7 +57,7 @@ export default function Search() {
    
       {loading && <p className="text-gray-500 mt-4">Loading...</p>}
 
-      {error && <p className="text-red-500 mt-4">Looks like we can't find the user</p>}
+      {error && <p className="text-red-500 mt-4">Looks like we cant find the user</p>}
 
             <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
         {users.map((user) => (
