@@ -4,13 +4,13 @@ import UserProfile from "./components/UserProfile";
 import { fetchUserData } from "./services/githubService";
 
 export default function App() {
-  const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = async (username) => {
+  const handleSearch = async (filters) => {
     setLoading(true);
-    const userData = await fetchUserData(username);
-    setUser(userData);
+    const userData = await fetchUserData(filters);
+    setUsers(userData);
     setLoading(false);
   };
 
@@ -18,7 +18,7 @@ export default function App() {
     <div className="max-w-lg mx-auto mt-10">
       <h1 className="text-2xl font-bold text-center">GitHub User Search</h1>
       <Search onSearch={handleSearch} />
-      {loading ? <p>Loading...</p> : <UserProfile user={user} />}
+      <UserProfile users={users} loading={loading} />
     </div>
   );
 }
