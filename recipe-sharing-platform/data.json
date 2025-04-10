@@ -1,0 +1,52 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Spaghetti Carbonara",
+      "image": "/images/spaghetti.jpeg",
+      "summary": "A classic Italian pasta dish with eggs, cheese, pancetta, and pepper.",
+      "ingredients": [
+        "200g spaghetti",
+        "100g pancetta",
+        "2 large eggs",
+        "50g Parmesan cheese",
+        "Black pepper",
+        "Salt"
+      ],
+      "instructions": "1. Cook spaghetti. 2. Fry pancetta. 3. Mix eggs, cheese, and pepper. 4. Combine everything."
+    },
+    {
+      "id": 2,
+      "title": "Chicken Curry",
+      "image": "/images/spaghetti.jpeg",
+      "summary": "A flavorful curry made with tender chicken pieces and aromatic spices.",
+      "ingredients": [
+        "500g chicken",
+        "2 onions",
+        "3 garlic cloves",
+        "1-inch ginger",
+        "2 tomatoes",
+        "1 tsp turmeric",
+        "1 tsp cumin",
+        "1 tsp coriander",
+        "1 tsp garam masala",
+        "Salt & pepper"
+      ],
+      "instructions": "1. Sauté onions, garlic, and ginger. 2. Add tomatoes and spices. 3. Cook chicken until tender."
+    },
+    {
+      "id": 3,
+      "title": "Avocado Toast",
+      "image": "/images/avocado-toast.jpeg",
+      "summary": "A simple and nutritious toast with fresh avocado and toppings.",
+      "ingredients": [
+        "1 ripe avocado",
+        "2 slices of bread",
+        "1 tsp lemon juice",
+        "Salt & pepper",
+        "Chili flakes (optional)"
+      ],
+      "instructions": "1. Toast bread. 2. Mash avocado with lemon, salt & pepper. 3. Spread on toast and add toppings."
+    }
+  ]
+}
