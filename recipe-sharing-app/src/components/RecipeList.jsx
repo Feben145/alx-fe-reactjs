@@ -1,14 +1,16 @@
+import { Link } from 'react-router-dom';
 import useRecipeStore from './recipeStore';
 
 const RecipeList = () => {
   const recipes = useRecipeStore((state) => state.recipes);
+  const deleteRecipe = useRecipeStore((state) => state.deleteRecipe);
 
   const styles = {
     container: {
       marginTop: '1.5rem',
     },
     emptyText: {
-      color: '#6b7280', // Tailwind's gray-500
+      color: '#6b7280',
       fontSize: '1rem',
     },
     recipeCard: {
@@ -21,11 +23,24 @@ const RecipeList = () => {
     },
     title: {
       fontWeight: 'bold',
-      fontSize: '1.125rem', // roughly text-lg
+      fontSize: '1.125rem',
       marginBottom: '0.5rem',
     },
     description: {
-      color: '#374151', // Tailwind's gray-700
+      color: '#374151',
+      marginBottom: '0.5rem',
+    },
+    link: {
+      display: 'inline-block',
+      marginRight: '1rem',
+      color: '#3b82f6',
+      textDecoration: 'none',
+    },
+    deleteButton: {
+      color: '#dc2626',
+      backgroundColor: 'transparent',
+      border: 'none',
+      cursor: 'pointer',
     },
   };
 
@@ -38,6 +53,15 @@ const RecipeList = () => {
           <div key={recipe.id} style={styles.recipeCard}>
             <h3 style={styles.title}>{recipe.title}</h3>
             <p style={styles.description}>{recipe.description}</p>
+
+            <Link to={`/recipes/${recipe.id}`} style={styles.link}>View</Link>
+            <Link to={`/recipes/edit/${recipe.id}`} style={styles.link}>Edit</Link>
+            <button
+              onClick={() => deleteRecipe(recipe.id)}
+              style={styles.deleteButton}
+            >
+              Delete
+            </button>
           </div>
         ))
       )}
